@@ -1,5 +1,6 @@
 using Nez;
 using Nez.Sprites;
+using Platformer.Scripts.Creators;
 
 namespace Platformer.Scenes;
 
@@ -10,8 +11,7 @@ public class Level1Scene : Scene
     {
         base.Initialize();
 
-        var playerTexture = Content.LoadTexture(name: Nez.Content.VirtualGuy.Idle);
-        var playerEntity = CreateEntity(name: "player");
-        playerEntity.AddComponent<SpriteRenderer>().SetTexture(playerTexture);
+        var playerEntity = AddEntity(PlayerCreator.Create(PlayerCreator.PlayerType.Default, this));
+        playerEntity.GetComponent<SpriteAnimator>().Play("Idle");
     }
 }
